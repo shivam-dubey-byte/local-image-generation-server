@@ -1,0 +1,10 @@
+{
+  "domain": "image.yourdomain.com",
+  "cloudflareTunnelName": "my-image-api",
+  "apiPort": 47913,
+  "comfyPort": 8188,
+  "installDir": "D:\\image-gen",
+  "checkpointUrl": "",
+  "checkpointFilename": "",
+  "apiKey": ""
+}

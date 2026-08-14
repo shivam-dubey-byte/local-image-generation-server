@@ -1,0 +1,4 @@
+config.json
+node_modules/
+*.log
+templates/api-wrapper/.env

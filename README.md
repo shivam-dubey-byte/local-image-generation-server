@@ -7,6 +7,36 @@ needing a public server, port forwarding, or a static IP.
 This is the exact setup used to run a self-hosted image generation API from a
 home/office PC, reachable over the internet through Cloudflare Tunnel.
 
+## Quick start (automated)
+
+Prefer doing this by hand, or want to understand it first? Skip to
+[Manual walkthrough](#1-install-comfyui) below — it explains the same
+steps this script runs.
+
+For an automated install with minimal manual steps:
+
+1. `cp config.example.json config.json` and fill in `domain` (a subdomain
+   on a domain already in your Cloudflare account) — everything else has a
+   sensible default or gets generated for you.
+2. Run, from an elevated (Administrator) PowerShell:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File scripts\install.ps1
+   ```
+3. The script installs everything it can (Git, Node, Python, PyTorch,
+   ComfyUI, the API wrapper, `cloudflared`), and stops with a clear
+   message only at the two points that genuinely need a human:
+   - `cloudflared tunnel login` — a one-time interactive browser login
+     Cloudflare requires (security requirement, can't be scripted around).
+   - Placing a checkpoint model file, if you didn't provide a direct
+     download URL in `config.json`.
+4. Re-run the same command after either of those — it's idempotent, it
+   picks up where it left off rather than redoing everything.
+
+**Handing this to an AI coding agent instead?** Point it at
+[`AGENTS.md`](AGENTS.md) — it's written as direct machine-executable
+instructions (exact commands, exact failure signatures and fixes, explicit
+boundaries on what not to touch), not prose for humans to interpret.
+
 ## Architecture
 
 ```
